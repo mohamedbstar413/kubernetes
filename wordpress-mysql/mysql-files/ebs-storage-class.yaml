@@ -5,12 +5,4 @@ metadata:
   name: ebs-storage-class
 
 provisioner: ebs.csi.aws.com
-parameters:
-  type: gp3
-  csi.storage.k8s.io/provisioner-secret-name: aws-secret
-  csi.storage.k8s.io/provisioner-secret-namespace: kube-system
-  csi.storage.k8s.io/controller-publish-secret-name: aws-secret
-  csi.storage.k8s.io/controller-publish-secret-namespace: kube-system
-  csi.storage.k8s.io/node-stage-secret-name: aws-secret
-  csi.storage.k8s.io/node-stage-secret-namespace: kube-system
 volumeBindingMode: WaitForFirstConsumer

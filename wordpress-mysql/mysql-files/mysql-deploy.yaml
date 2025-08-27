@@ -16,21 +16,19 @@ spec:
         tier: mysql
     spec:
       containers:
-      - image: mysql
-        name: mysql
-        args:
-          - "--storage-dir=/mnt/local-storage"
-        volumeMounts:
-          - name: mysql-pv
-            mountPath: /var/lib/mysql
-        env:
-          - name: MYSQL_ROOT_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                key: password
-                name: mysql-secret
-        ports:
-          - containerPort: 3306
+        - image: mysql
+          name: mysql
+          volumeMounts:
+            - name: mysql-pv
+              mountPath: /var/lib/mysql
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: mysql-secret
+          ports:
+            - containerPort: 3306
       volumes:
         - name: mysql-pv
           persistentVolumeClaim:
