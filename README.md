@@ -60,8 +60,11 @@ Deployment Flow
 
   Apply PersistentVolumeClaims for both.
 
+
   Deploy MySQL + Service + Secret.
 
 Deploy WordPress + Service + Secret, mounting the EFS PVC.
 
 Access WordPress via http://<EC2_Node_IP>:31031.
+
+<img width="1474" height="557" alt="image" src="https://github.com/user-attachments/assets/5fa4f037-99d6-4b8d-a7a3-eb16862bcad4" />
