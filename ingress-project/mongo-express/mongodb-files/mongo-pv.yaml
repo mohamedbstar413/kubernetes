@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+
+metadata:
+  name: mongo-pv2
+spec:
+  storageClassName: mongo-sc
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 10Gi
+  csi:
+    driver: ebs.csi.aws.com
+    volumeHandle: vol-05eb80ad0600b4d97
