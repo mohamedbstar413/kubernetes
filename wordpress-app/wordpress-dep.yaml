@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: word-dep
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: wordpress
+      tier: web
+  template:
+    metadata:
+      name: word-pod
+      labels:
+        app: wordpress
+        tier: web
+    spec:
+      containers:
+        - image: wordpress:php7.3-apache
+          name: wordpress
+          volumeMounts:
+            - mountPath: /var/www/html
+              name: efs-volume
+          ports:
+            - containerPort: 8080
+          env:
+            - name: WORDPRESS_DB_HOST
+              value: 10.98.24.95:3306
+            - name: WORDPRESS_DB_USER
+              value: root
+            - name: WORDPRESS_DB_NAME
+              value: mysql
+            - name: WORDPRESS_DB_PASSWORD
+              valueFrom:
+               secretKeyRef:
+                 name: mysql-secret
+                 key: password
+          
+      volumes:
+        - name: efs-volume
+          persistentVolumeClaim:
+            claimName: efs-pvc
